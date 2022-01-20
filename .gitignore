@@ -33,3 +33,8 @@
 
 # VS
 *.vs
+
+# Complie
+*x64
+*Debug
+*Release
