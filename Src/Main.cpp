@@ -3,6 +3,7 @@
 #include <chrono>
 #include <time.h>
 #include <conio.h>
+#include <bios.h>
 
 #define WINDOWS
 
@@ -83,12 +84,12 @@ int main(int argc, char* argv[])
 			//cin >> tmp;
 			//cout << "检测到用户输入" << tmp<<endl;
 			
-			//怎么不打断主循环的检测用户输入,有人建议用kbhit(),另有人建议bioskey(1)
+			//怎么不打断主循环的检测用户输入,有人建议用kbhit(),另有人建议bioskey(1)（虚拟键盘能用吗）
 			//if (tmp != "")
 			//{
 			//	flag_userinput == true;
 			//}
-			if (_kbhit()==true)
+			if (bioskey(1)==true)
 			{
 				flag_userinput == true;
 				cout << "用户输入！！！刷" << endl;
