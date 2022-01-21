@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <chrono>
 #include <time.h>
+#include <conio.h>
 
 #define WINDOWS
 
@@ -81,12 +82,18 @@ int main(int argc, char* argv[])
 			string tmp = "";
 			//cin >> tmp;
 			//cout << "检测到用户输入" << tmp<<endl;
-			//怎么不打断主循环的检测用户输入,有人建议用kbhit()
-			if (tmp != "")
+			
+			//怎么不打断主循环的检测用户输入,有人建议用kbhit(),另有人建议bioskey(1)
+			//if (tmp != "")
+			//{
+			//	flag_userinput == true;
+			//}
+			if (_kbhit()==true)
 			{
 				flag_userinput == true;
+				cout << "用户输入！！！刷" << endl;
 			}
-			if ((flag_timeout == true || flag_userinput == true)/*&& flag_waitmode==false*/)
+			if ((flag_timeout == true && flag_waitmode==false) || flag_userinput == true)
 			{
 				flag_allow_global_refresh = true;
 				cout << "满足刷新条件可以刷新" << endl;
