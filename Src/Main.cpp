@@ -3,14 +3,29 @@
 #include <chrono>
 #include <time.h>
 
+#define WINDOWS
+
+#ifdef WINDOWS
+#include <Windows.h>
+#endif
+
 using namespace std;
 // using namespace std::corono;  https://zhuanlan.zhihu.com/p/137626056  这C++11的新特性咋不支持捏
 
-int CHAR_PIXEL = 16;
-int CHAR_NUM_WIDTH = 40;
-int CHAR_NUM_HEIGHT = 20;
+#define CHAR_PIXEL 16
+#define CHAR_NUM_WIDTH 40
+#define CHAR_NUM_HEIGHT 20
 
-int FRAME_RATE = 1; // 视情况增加到8，再窄不好除了，局刷我不知道怎么搞
+int FRAME_RATE = 5; // 视情况增加到8，再窄不好除了，局刷我不知道怎么搞
+
+void refresh(int xmin, int ymin, int xmax, int ymax, int mat[CHAR_NUM_WIDTH][CHAR_NUM_HEIGHT])
+{
+	int width = xmax - xmin;
+	// for i in : for j in : {gotoxy();print()}
+
+	//void gotoxy(int x, int y) { COORD pos = {x,y}; HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleCursorPosition(hOut, pos); }
+	//https://blog.csdn.net/dfsrewgf/article/details/121993007
+}
 
 int main(int argc, char* argv[])
 {
@@ -62,7 +77,7 @@ int main(int argc, char* argv[])
 			{
 				flag_timeout = true; //每个循环检查一次以模拟定时器
 			}
-			if ((flag_timeout == true || flag_userinput == true)&& flag_waitmode==false)
+			if ((flag_timeout == true || flag_userinput == true)/*&& flag_waitmode==false*/)
 			{
 				flag_allow_global_refresh = true;
 			}
