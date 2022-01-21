@@ -16,7 +16,7 @@ using namespace std;
 #define CHAR_NUM_WIDTH 40
 #define CHAR_NUM_HEIGHT 20
 
-int FRAME_RATE = 5; // 视情况增加到8，再窄不好除了，局刷我不知道怎么搞
+int FRAME_RATE_BASE = 5; // 视情况增加到8，再窄不好除了，局刷我不知道怎么搞
 
 void refresh(int xmin, int ymin, int xmax, int ymax, int mat[CHAR_NUM_WIDTH][CHAR_NUM_HEIGHT])
 {
@@ -73,13 +73,23 @@ int main(int argc, char* argv[])
 		{
 			stop_tmp = clock();
 			int duration_tmp = stop_tmp - start_tmp;
-			if (duration_tmp >= 1000 / FRAME_RATE)
+			if (duration_tmp >= 1000 / FRAME_RATE_BASE)
 			{
 				flag_timeout = true; //每个循环检查一次以模拟定时器
+				cout << "当前距上次刷新时间为" << duration_tmp << endl;
+			}
+			string tmp = "";
+			//cin >> tmp;
+			//cout << "检测到用户输入" << tmp<<endl;
+			//怎么不打断主循环的检测用户输入,有人建议用kbhit()
+			if (tmp != "")
+			{
+				flag_userinput == true;
 			}
 			if ((flag_timeout == true || flag_userinput == true)/*&& flag_waitmode==false*/)
 			{
 				flag_allow_global_refresh = true;
+				cout << "满足刷新条件可以刷新" << endl;
 			}
 		} while (flag_allow_global_refresh == false);
 
